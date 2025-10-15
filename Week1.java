@@ -34,26 +34,64 @@
 
 
 
-    class Week1 {
-    public int missingNumber(int[] arr) {
-        cyclicSort(arr);
+//     class Week1 {
+//     public int missingNumber(int[] arr) {
+//         cyclicSort(arr);
 
         
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] != i) {
-                return i; 
+//         for (int i = 0; i < arr.length; i++) {
+//             if (arr[i] != i) {
+//                 return i; 
+//             }
+//         }
+
+        
+//         return arr.length;
+//     }
+
+//     static void cyclicSort(int[] arr) {
+//         int i = 0;
+//         while (i < arr.length) {
+//             int correct = arr[i];
+//             if (arr[i] < arr.length && arr[i] != arr[correct]) {
+//                 swap(arr, i, correct);
+//             } else {
+//                 i++;
+//             }
+//         }
+//     }
+
+//     static void swap(int[] arr, int first, int second) {
+//         int temp = arr[first];
+//         arr[first] = arr[second];
+//         arr[second] = temp;
+//     }
+// }
+
+//448 Disappered
+
+import java.util.*;
+
+class Solution {
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        cyclicSort(nums);
+
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            // If number i+1 is not at index i, it means i+1 is missing
+            if (nums[i] != i + 1) {
+                result.add(i + 1);
             }
         }
 
-        
-        return arr.length;
+        return result;
     }
 
     static void cyclicSort(int[] arr) {
         int i = 0;
         while (i < arr.length) {
-            int correct = arr[i];
-            if (arr[i] < arr.length && arr[i] != arr[correct]) {
+            int correct = arr[i] - 1; // Correct index for value arr[i]
+            if (arr[i] > 0 && arr[i] <= arr.length && arr[i] != arr[correct]) {
                 swap(arr, i, correct);
             } else {
                 i++;
