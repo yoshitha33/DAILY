@@ -70,36 +70,65 @@
 
 //448 Disappered
 
-import java.util.*;
+// import java.util.*;
+
+// class Solution {
+//     public List<Integer> findDisappearedNumbers(int[] nums) {
+//         cyclicSort(nums);
+
+//         List<Integer> result = new ArrayList<>();
+//         for (int i = 0; i < nums.length; i++) {
+//             // If number i+1 is not at index i, it means i+1 is missing
+//             if (nums[i] != i + 1) {
+//                 result.add(i + 1);
+//             }
+//         }
+
+//         return result;
+//     }
+
+//     static void cyclicSort(int[] arr) {
+//         int i = 0;
+//         while (i < arr.length) {
+//             int correct = arr[i] - 1; // Correct index for value arr[i]
+//             if (arr[i] > 0 && arr[i] <= arr.length && arr[i] != arr[correct]) {
+//                 swap(arr, i, correct);
+//             } else {
+//                 i++;
+//             }
+//         }
+//     }
+
+//     static void swap(int[] arr, int first, int second) {
+//         int temp = arr[first];
+//         arr[first] = arr[second];
+//         arr[second] = temp;
+//     }
+// }
+
+
+
+
 
 class Solution {
-    public List<Integer> findDisappearedNumbers(int[] nums) {
-        cyclicSort(nums);
-
-        List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < nums.length; i++) {
-            // If number i+1 is not at index i, it means i+1 is missing
-            if (nums[i] != i + 1) {
-                result.add(i + 1);
-            }
-        }
-
-        return result;
-    }
-
-    static void cyclicSort(int[] arr) {
+    public int findDuplicate(int[] arr) {
         int i = 0;
         while (i < arr.length) {
-            int correct = arr[i] - 1; // Correct index for value arr[i]
-            if (arr[i] > 0 && arr[i] <= arr.length && arr[i] != arr[correct]) {
-                swap(arr, i, correct);
+            if (arr[i] != i + 1) {
+                int correct = arr[i] - 1; // Correct index
+                if (arr[i] != arr[correct]) {
+                    swap(arr, i, correct);
+                } else {
+                    return arr[i];
+                }
             } else {
                 i++;
             }
         }
+        return -1;
     }
 
-    static void swap(int[] arr, int first, int second) {
+    void swap(int[] arr, int first, int second) {
         int temp = arr[first];
         arr[first] = arr[second];
         arr[second] = temp;
